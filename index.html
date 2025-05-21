@@ -179,6 +179,13 @@ main {
 
      $("#dark-mode-toggle").click(function() {
         $("body").toggleClass("dark-mode"); // 다크 모드 클래스를 추가/제거
+ 
+         if ($("body").hasClass("dark-mode")) {
+            $("#pict").attr("src", "./img/lightb1.png"); // 다크 모드에서 변경될 이미지
+        } else {
+            $("#pict").attr("src", "./img/image.png"); // 원래 이미지로 복원
+        }
+         
     });
  
 
