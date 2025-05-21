@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개 페이지</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: navy;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+}
+
+footer {
+    background: purple;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    position: fixed; /* 푸터를 화면 하단에 고정 */
+    bottom: 0;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    padding-bottom: 60px; /* 푸터와 겹치지 않도록 여백 추가 */
+}
+
+.sidebar {
+    width: 150px;
+    background: #d0dad3;
+    padding-top: 20px;
+    height: 100vh; /* 푸터를 침범하지 않도록 고정 */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+   
+     display: inline-block; /* 정사각형 모양을 유지하기 위해 */
+    padding: 10px 20px; /* 내부 여백 설정 */
+    border-radius: 10px; /* 모서리를 둥글게 */
+    background-color: #f0f0f0; /* 배경색 추가 */
+    border: 1px solid #ccc; /* 테두리 추가 */
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px; 
+    /*  
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    */
+} 
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+    
+
+.dark-mode {
+    background-color: #222; /* 어두운 배경 */
+    color: #0e0d0d; /* 밝은 텍스트 */
+    
+
+} 
+
+.dark-mode #main-content h2,
+.dark-mode #main-content p,
+.dark-mode #main-content a {
+    color: white; /* 자기소개, 프로젝트, 연락처의 텍스트를 하얀색으로 변경 */
+}
+ 
+
+
+.dark-mode header {
+    background: black;
+}
+
+.dark-mode footer {
+    background: darkgray;
+}
+
+.dark-mode .sidebar {
+    background: #333;
+}
+
+.dark-mode button {
+    background-color: #444;
+    color: white;
+    border: 1px solid #777;
+}
+ 
+ 
+
+  
+    </style>
+
+</head>
+<body>
+    
+     <header> 
+        <h1> Beom의 빅데이터 개발 포트폴리오</h1> 
+        <button id="dark-mode-toggle">다크 모드</button> 
+
+    </header>
+
+
+<div class="container">
+    <aside class="sidebar"> 
+        <ul>
+            <li onclick="changeContent('about')">자기소개</li>
+            <li onclick="changeContent('projects')">프로젝트</li>
+            <li onclick="changeContent('contact')">&nbsp 연락처 &nbsp</li>   
+    </aside>
+
+    <main id="main-content">
+        <h2>어서오세요</h2> 
+        <p>메뉴를 클릭하면 내용이 변경됩니다.</p>
+        <img src = './img/image.png'>  
+    </main>
+</div>
+ 
+
+
+
+
+
+
+    <footer>
+        <p> From Mr Beom</p>
+    </footer>
+
+     <script>
+
+ 
+        $(document).ready(function() {
+    $(".sidebar ul li").click(function() {
+        let section = $(this).text().trim();
+        let content = $("#main-content"); 
+
+        if (section === "자기소개") {  
+            content.html("<h2>자기소개</h2><hr><p>&nbsp &nbsp &nbsp 저는 백승범입니다.  <br><br>&nbsp &nbsp &nbsp  사용가능언어<br> &nbsp &nbsp &nbsp python, java, C <br><br> &nbsp &nbsp &nbsp 데이터베이스<br> &nbsp &nbsp &nbsp Mysql, oracle, mongodb</p><hr>");
+        } else if (section === "프로젝트") {
+            content.html("<h2>프로젝트</h2><hr><p>1.데이터 파이프라인 프로젝트를 하였습니다.<br><br>2.데이터분석 프로젝트를 하였습니다.<br><img src='./img/aaaa.png'> <br> <a href='https://github.com/123tm'>github.com/123tm</a></p><hr>");
+        } else if (section === "연락처") {   
+            content.html("<h2>연락처</h2><hr><p> 전화번호:&nbsp010-2xxx-2444<br>Email: &nbsp123tmdq123</p><hr>"); 
+        } 
+           
+ 
+  
+        $("p").hover(function() { 
+    $(this).css("font-size", "36px");
+    }); 
+ 
+    });
+
+     $("#dark-mode-toggle").click(function() {
+        $("body").toggleClass("dark-mode"); // 다크 모드 클래스를 추가/제거
+    });
+ 
+
+
+
+
+
+});
+
+
+
+/*
+사용가능언어 
+python, java, C 
+
+데이터베이스 Mysql, oracle, mongodb
+
+프레임워크 : django
+
+운양체제 : ubuntu
+*/
+
+/*
+    function changeContent(section) {
+    const content = document.getElementById("main-content"); 
+
+    if (section === "about") {
+        content.innerHTML = "<h2>자기소개</h2><p>여기에 자기소개 내용이 들어갑니다.<br>사용가능언어<br>python, java, C <br><br>데이터베이스<br> Mysql, oracle, mongodb  </p>";
+    } else if (section === "projects") {
+        content.innerHTML = "<h2>프로젝트</h2><p>여기에 프로젝트 내용이 들어갑니다.</p>";
+    } else if (section === "contact") {
+        content.innerHTML = "<h2>연락처</h2><p>여기에 연락처 정보가 들어갑니다.</p>";
+    }
+}
+ 
+        console.log("웹 페이지가 로드되었습니다!");
+  */
+  </script>
+
+</body>
+</html>
